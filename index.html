@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="sugang.css"></link>
+</head>
+<body>
+    <header>
+        <img src="/sch_logo.png" alt="">
+        <p class="page_info">순천향대학교</p>
+        <p class="page_info">수강신청시스템</p>
+
+        <p id="user_info">박성진(20184007)님 환영합니다.</p>
+        <a href="">로그아웃</a>
+        
+    </header>
+
+    <aside>
+        <p>Menu</p>
+        <div>
+            <ul>
+                <li>학부학사행정</li>
+                <li>부속행정</li>
+                <li>연구행정</li>
+            </ul>
+        </div>
+    </aside>
+
+    <div class="contents">
+        <div class="sugangList">
+            <p>수강신청목록</p>
+            <table>
+                <tr>
+                    <td>개설학년(반)</td>
+                    <td>교과구분</td>
+                    <td>교과목명</td>
+                    <td>수강번호</td>
+                    <td>시간</td>
+                    <td>학점</td>
+                    <td>교수명</td>
+                    <td>시간 및 요일</td>
+                    <td>강의실</td>
+                </tr>
+                <tr>
+                    <td>2학년</td>
+                    <td>전공</td>
+                    <td>C++프로그래밍</td>
+                    <td>10746</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>김명숙</td>
+                    <td>목1,2,3</td>
+                    <td>M503</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="listSearch">
+            
+            <div class="Searchhead">
+                <p>수업시간표 조회</p>
+                <form action="">
+                    <input type="submit" value="조회">
+                </form>
+            </div>
+
+            <div class="selectIf">
+                <fieldset>
+                    <label for=""><input type="radio" name="radioSelect" value="allList">대학전체</label>
+                    <label for=""><input type="radio" name="radioSelect" value="Department">학과(부)</label>
+                    <label for=""><input type="radio" name="radioSelect" value="Common_culture">공통교양</label>
+                </fieldset>
+                
+                <div class="detailSelect">
+                    <b>>년도</b><input type="number" min="2000" max="2021" value="2021">
+                    
+                    <b>>학기</b>
+                    <input type="text" list="semester">
+                    <datalist size="4" id="semester">
+                        <option value="1학기" label="1학기"></option>
+                        <option value="2학기" label="2학기"></option>
+                        <option value="하계계절학기" label="하계계절학기"></option>
+                        <option value="동계계절학기" label="동계계절학기"></option>
+                    </datalist>
+
+                    <b>>대학</b>
+                    <select  id="univ">
+                        <option value="-전체-">-전체-</option>
+                        <option value="대학전체">대학전체</option>
+                        <option value="인문과학대학">인문과학대학</option>
+                        <option value="사회과학대학">사회과학대학</option>
+                        <option value="글로벌경영대학">글로벌경영대학</option>
+                        <option value="자연과학대학">자연과학대학</option>
+                        <option value="공과대학">공과대학</option>
+                        <option value="의료과학대학">의료과학대학</option>
+                        <option value="의과대학">의과대학</option>
+                        <option value="산학평생대학">산학평생대학</option>
+                        <option value="SCH미디어랩스">SCH미디어랩스</option>
+                        <option value="엔터프라이즈스쿨">엔터프라이즈스쿨</option>
+                        <option value="향설나눔대학">향설나눔대학</option>
+                        <option value="인문사회과학대학">인문사회과학대학</option>
+                    </select>
+
+                    <b>>학부(과)</b>
+                    
+                    <select id="department">
+                        <option value="[학과]경영학과(40498)">[학과]경영학과(40498)</option>
+                        <option value="[학과]국제통상학과(40499)">[학과]국제통상학과(40499)</option>
+                        
+                    </select>
+                </div>
+
+
+            </div>
+
+            <div class="resultList">
+                <table>
+                    <tr>
+                        <td>개설학년(반)</td>
+                        <td>교과구분</td>
+                        <td>교과목명</td>
+                        <td>수강번호</td>
+                        <td>시간</td>
+                        <td>학점</td>
+                        <td>교수명</td>
+                        <td>시간 및 요일</td>
+                        <td>강의실</td>
+                    </tr>
+                    <tr>
+                        <td>2학년</td>
+                        <td>전공</td>
+                        <td>C++프로그래밍</td>
+                        <td>10746</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>김명숙</td>
+                        <td>목1,2,3</td>
+                        <td>M503</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
