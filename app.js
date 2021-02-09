@@ -55,8 +55,22 @@ app.post('/login',(req,res)=>{
 
 app.get('/api/get/class', (req, res) => {
     const major = req.query.major;
-    sugang.getClassFromMajor(res, major);
+    const univ = req.query.univ;
+    if (major)
+        sugang.getClassFromMajor(res, major);
+    else if (univ)
+        sugang.getClassFromUniv(res, univ);
 });
+
+app.get('/accept/:id', (req, res) => {
+    const id = req.session.id;
+    // 신청하는 처리 DB를 해서
+});
+
+// 버튼을 눌렀을 때 click 이벤트로 /accept/15 신호 보내게
+// 화면 출력 함수 실행 (api 가져다 쓰는거)
+
+// 신청, 취소
 
 app.listen(PORT, () => {
     console.log(`${PORT}번 포트로 열림`);
