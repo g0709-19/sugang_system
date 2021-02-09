@@ -4,10 +4,19 @@ body{
 }
 
 header{
-    width: 100vw;
+    width: 99vw;
     height: 20%;
     display: flex;
     background-color: rgb(43, 112, 112);
+    justify-content: space-between;
+}
+
+header .logoInfo{
+    display: flex;
+}
+
+header a{
+    margin-right: 20px;
 }
 
 header img{
@@ -61,4 +70,29 @@ aside{
 
 .selectIf fieldset{
     border: none;
+}
+
+table{
+    text-align: center;
+    border-collapse:separate;
+    border-spacing: 0 3px;
+}
+table td{
+    border: 1px solid black;
+    padding: 7px;
+}
+
+table .subjectList:hover{
+    background-color: rgba(206, 128, 55, 0.849);
+}
+
+.Searchhead{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+.Searchhead input{
+    height: 30px;
+    margin-top: 14px;
+    
 }

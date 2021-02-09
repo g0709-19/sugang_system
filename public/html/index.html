@@ -5,15 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/sugang.css">
+    <link rel="stylesheet" href="../css/sugang.css">
 </head>
 <body>
     <header>
-        <img src="/img/sch_logo.png" alt="">
-        <p class="page_info">순천향대학교</p>
-        <p class="page_info">수강신청시스템</p>
+        <div class="logoInfo">
+            <img src="../img/sch_logo.png" alt="">
+            <p class="page_info">순천향대학교</p>
+            <p class="page_info">수강신청시스템</p>
+        </div>
 
-        <p id="user_info">박성진(20184007)님 환영합니다.</p>
+        <p id="user_info"><span id="userInfo">박성진(20184007)</span>님 환영합니다.</p>
         <a href="">로그아웃</a>
         
     </header>
@@ -44,7 +46,7 @@
                     <td>시간 및 요일</td>
                     <td>강의실</td>
                 </tr>
-                <tr>
+                <tr class="subjectList">
                     <td>2학년</td>
                     <td>전공</td>
                     <td>C++프로그래밍</td>
@@ -54,6 +56,7 @@
                     <td>김명숙</td>
                     <td>목1,2,3</td>
                     <td>M503</td>
+                    <td class="cancelsubjectBtn">취소</td>
                 </tr>
             </table>
         </div>
@@ -62,9 +65,8 @@
             
             <div class="Searchhead">
                 <p>수업시간표 조회</p>
-                <form action="">
-                    <input type="submit" value="조회">
-                </form>
+                <input type="submit" value="조회">
+                
             </div>
 
             <div class="selectIf">
@@ -78,13 +80,12 @@
                     <b>>년도</b><input type="number" min="2000" max="2021" value="2021">
                     
                     <b>>학기</b>
-                    <input type="text" list="semester">
-                    <datalist size="4" id="semester">
-                        <option value="1학기" label="1학기"></option>
-                        <option value="2학기" label="2학기"></option>
-                        <option value="하계계절학기" label="하계계절학기"></option>
-                        <option value="동계계절학기" label="동계계절학기"></option>
-                    </datalist>
+                    <select id="semester">
+                        <option value="1학기" label="1학기">1학기</option>
+                        <option value="2학기" label="2학기">2학기</option>
+                        <option value="하계계절학기" label="하계계절학기">하계계절학기</option>
+                        <option value="동계계절학기" label="동계계절학기">동계계절학기</option>
+                    </select>
 
                     <b>>대학</b>
                     <select  id="univ">
@@ -129,7 +130,7 @@
                         <td>시간 및 요일</td>
                         <td>강의실</td>
                     </tr>
-                    <tr>
+                    <tr class="subjectList">
                         <td>2학년</td>
                         <td>전공</td>
                         <td>C++프로그래밍</td>
@@ -139,6 +140,7 @@
                         <td>김명숙</td>
                         <td>목1,2,3</td>
                         <td>M503</td>
+                        <td class="addsubjectBtn">신청</td>
                     </tr>
                 </table>
             </div>

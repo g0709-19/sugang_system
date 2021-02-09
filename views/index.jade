@@ -5,13 +5,16 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible' content='IE=edge')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title Document
-    link(rel='stylesheet' href='/css/sugang.css')
+    link(rel='stylesheet' href='../css/sugang.css')
   body
     header
-      img(src='/img/sch_logo.png' alt='')
-      p.page_info 순천향대학교
-      p.page_info 수강신청시스템
-      p#user_info 박성진(20184007)님 환영합니다.
+      .logoInfo
+        img(src='../img/sch_logo.png' alt='')
+        p.page_info 순천향대학교
+        p.page_info 수강신청시스템
+      p#user_info
+        span#userInfo 박성진(20184007)
+        | 님 환영합니다.
       a(href='') 로그아웃
     aside
       p Menu
@@ -35,7 +38,7 @@ html(lang='en')
               td 교수명
               td 시간 및 요일
               td 강의실
-            tr
+            tr.subjectList
               td 2학년
               td 전공
               td C++프로그래밍
@@ -45,11 +48,11 @@ html(lang='en')
               td 김명숙
               td 목1,2,3
               td M503
+              td.cancelsubjectBtn 취소
       .listSearch
         .Searchhead
           p 수업시간표 조회
-          form(action='')
-            input(type='submit' value='조회')
+          input(type='submit' value='조회')
         .selectIf
           fieldset
             label(for='')
@@ -65,12 +68,11 @@ html(lang='en')
             b >년도
             input(type='number' min='2000' max='2021' value='2021')
             b >학기
-            input(type='text' list='semester')
-            datalist#semester(size='4')
-              option(value='1학기' label='1학기')
-              option(value='2학기' label='2학기')
-              option(value='하계계절학기' label='하계계절학기')
-              option(value='동계계절학기' label='동계계절학기')
+            select#semester
+              option(value='1학기' label='1학기') 1학기
+              option(value='2학기' label='2학기') 2학기
+              option(value='하계계절학기' label='하계계절학기') 하계계절학기
+              option(value='동계계절학기' label='동계계절학기') 동계계절학기
             b >대학
             select#univ
               option(value='-전체-') -전체-
@@ -104,7 +106,7 @@ html(lang='en')
                 td 교수명
                 td 시간 및 요일
                 td 강의실
-              tr
+              tr.subjectList
                 td 2학년
                 td 전공
                 td C++프로그래밍
@@ -114,3 +116,4 @@ html(lang='en')
                 td 김명숙
                 td 목1,2,3
                 td M503
+                td.addsubjectBtn 신청
