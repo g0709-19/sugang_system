@@ -1,0 +1,177 @@
+@import 'reset.css';
+
+body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-family: "Segoe UI",
+    "맑은 고딕",
+    "Malgun Gothic",
+    "애플 SD 산돌고딕 Neo",
+    "Apple SD Gothic Neo",
+    sans-serif;
+    font-size: 13px;
+    color: #333;
+    box-sizing: border-box;
+    line-height: 15px;
+}
+
+.left, .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.left {
+    background: #e6eff2;
+    justify-content: space-between;
+}
+
+.center {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left>.center {
+    height: 100vh;
+}
+
+.right>.center {
+    padding: 100px 0;
+}
+
+.container {
+    width: 70%;
+}
+
+.left>.container {
+    height: 100vh;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.title {
+    font-size: 17px;
+    font-weight: bold;
+    padding: 15px 0;
+}
+
+.title.border {
+    border-bottom: 1px solid #c0c9cc;
+}
+
+.txt-red {
+    color: #f23d18;
+}
+
+b {
+    font-weight: bold;
+}
+
+.notify {
+    list-style-type: disc;
+    margin-top: 15px;
+    margin-left: 15px;
+    font-size: 12px;
+}
+
+.notify>li {
+    margin-bottom: 10px;
+}
+
+.notify>li>p {
+    margin-left: 20px;
+}
+
+/* 오른쪽 */
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.login-text {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.login-text input {
+    border: 1px solid #ccc;
+    padding: 15px;
+    outline: 0;
+    margin: 5px 0;
+}
+
+.login-text input::placeholder {
+    color: #aaa;
+}
+
+.login-text input:focus {
+    border: 1px solid rgb(0, 17, 95);
+}
+
+.login-button>button {
+    width: 100%;
+    background: #29c4f4;
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    padding: 15px 0;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.login-button>button:hover {
+    background: #1fb9e7;
+    cursor: pointer;
+}
+
+
+.calendar {
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.element>li {
+    border-bottom: 1px solid #ccc;
+    padding: 12px 15px;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+/* .element>li {
+    display: flex;
+    align-items: center;
+    height: 20px;
+    flex-direction: column;
+} */
+
+.cha, .grade {
+    display: inline-block;
+    padding: 0 8px;
+    background: #ccc;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #fff;
+    font-size: 11px;
+    margin-right: 3px;
+}
+
+.cha {
+    background: #00677e;
+}
+
+.grade {
+    background: #2ac4f4;
+}
