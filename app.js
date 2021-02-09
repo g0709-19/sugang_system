@@ -7,15 +7,11 @@ const PORT = 3000;
 let bodyParser = require("body-parser");
 let msg = require ('dialog')//경고창 띄워주는 모듈
 
-let mysql      = require('mysql');
-let db = mysql.createConnection({
-  host     : '222.118.77.5',
-  user     : 'gxtxhm',
-  password : 'qwer1234@',
-  database : 'sugang' 
-});
- 
+let db = require('./mysql-db');
+
 db.connect();
+
+const sugang = require('./sugang-api');
 
 app.use(express.static('public'));
 app.set('views','./views');//views폴더가 있어야한다. 
@@ -55,7 +51,12 @@ app.post('/login',(req,res)=>{
 
     
     
-})
+});
+
+app.get('/api/get/class', (req, res) => {
+    const major = req.query.major;
+    sugang.getClassFromMajor(res, major);
+});
 
 app.listen(PORT, () => {
     console.log(`${PORT}번 포트로 열림`);
