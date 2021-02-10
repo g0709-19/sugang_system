@@ -56,21 +56,65 @@ app.post('/login',(req,res)=>{
 app.get('/api/get/class', (req, res) => {
     const major = req.query.major;
     const univ = req.query.univ;
-    if (major)
+    const user = req.query.user;
+    if (major) // localhost:3000/api/get/class?major={학과ID}
         sugang.getClassFromMajor(res, major);
-    else if (univ)
+    else if (univ) // localhost:3000/api/get/class?univ={대학ID}
         sugang.getClassFromUniv(res, univ);
+    else if (user) // localhost:3000/api/get/class?user={학번}
+        sugang.lookup(res, user);
 });
 
-app.get('/accept/:id', (req, res) => {
-    const id = req.session.id;
-    // 신청하는 처리 DB를 해서
-});
+// 수강 신청
+// localhost:3000/api/enroll/{과목ID}
+app.get('/api/enroll/:id', (req, res) => {
+    /*
+        로그인 시 req.session.user 에 유저 정보 저장해뒀다가
+        req.session.user.id 같은 형태로 학번 가져와야됨
+    */
+    const user_id = 20184014;
+    const id = req.params.id;
+    if (id) {
+        sugang.enroll(user_id, id, result => {
+            if (result) {
+                // res.send('성공!');
+                // 자바스크립트 fetch 로 응답을 받고
+                // enrolled 값이 true 라면 제대로 신청된 것으로 인식하여 처리
+                res.json({enrolled:true});
+            } else {
+                // res.send('실패!');
+                res.json({});
+            }
+        });
+    }
+})
+
+// 수강 신청 취소
+// localhost:3000/api/delist/{과목ID}
+app.get('/api/delist/:id', (req, res) => {
+    /*
+        로그인 시 req.session.user 에 유저 정보 저장해뒀다가
+        req.session.user.id 같은 형태로 학번 가져와야됨
+    */
+    const user_id = 20184014;
+    const id = req.params.id;
+    if (id) {
+        sugang.delist(user_id, id, result => {
+            if (result) {
+                // res.send('성공!');
+                // 자바스크립트 fetch 로 응답을 받고
+                // enrolled 값이 true 라면 제대로 신청된 것으로 인식하여 처리
+                res.json({enrolled:true});
+            } else {
+                // res.send('실패!');
+                res.json({});
+            }
+        });
+    }
+})
 
 // 버튼을 눌렀을 때 click 이벤트로 /accept/15 신호 보내게
 // 화면 출력 함수 실행 (api 가져다 쓰는거)
-
-// 신청, 취소
 
 app.listen(PORT, () => {
     console.log(`${PORT}번 포트로 열림`);
