@@ -12,7 +12,7 @@ html(lang='en')
         img(src='../img/sch_logo.png' alt='')
         p.page_info 순천향대학교
         p.page_info 수강신청시스템
-      p#user_info
+      p#user_info 
         span#userInfo=userInfo
         | 님 환영합니다.
       a(href='/logout') 로그아웃
@@ -42,7 +42,7 @@ html(lang='en')
       .listSearch
         .Searchhead
           p 수업시간표 조회
-          input(type='submit' value='조회')
+          input(type='button' id="searchData" value='조회')
         .selectIf
           fieldset
             label(for='')
@@ -66,12 +66,12 @@ html(lang='en')
             b >대학
             select#univ
               option(value='-전체-') -전체-
-              option(value='대학전체') 대학전체
+              option(value='5') 대학전체
               option(value='인문과학대학') 인문과학대학
               option(value='사회과학대학') 사회과학대학
               option(value='글로벌경영대학') 글로벌경영대학
-              option(value='자연과학대학') 자연과학대학
-              option(value='공과대학') 공과대학
+              option(value='1') 자연과학대학
+              option(value='0') 공과대학
               option(value='의료과학대학') 의료과학대학
               option(value='의과대학') 의과대학
               option(value='산학평생대학') 산학평생대학
@@ -81,8 +81,9 @@ html(lang='en')
               option(value='인문사회과학대학') 인문사회과학대학
             b >학부(과)
             select#department
-              option(value='[학과]경영학과(40498)') [학과]경영학과(40498)
-              option(value='[학과]국제통상학과(40499)') [학과]국제통상학과(40499)
+              option(value='40498') [학과]경영학과(40498)
+              option(value='40499') [학과]국제통상학과(40499)
+              option(value='10753') [학과]데이터통신(10753)
         .resultList
           table
             tbody

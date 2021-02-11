@@ -96,7 +96,7 @@ app.get('/api/enroll/:id', (req, res) => {
         로그인 시 req.session.user 에 유저 정보 저장해뒀다가
         req.session.user.id 같은 형태로 학번 가져와야됨
     */
-    const user_id = 20184014;
+    let user_id = req.session.Id;
     const id = req.params.id;
     if (id) {
         sugang.enroll(user_id, id, result => {
@@ -120,7 +120,7 @@ app.get('/api/delist/:id', (req, res) => {
         로그인 시 req.session.user 에 유저 정보 저장해뒀다가
         req.session.user.id 같은 형태로 학번 가져와야됨
     */
-    const user_id = 20184014;
+    let user_id = req.session.Id;
     const id = req.params.id;
     if (id) {
         sugang.delist(user_id, id, result => {
