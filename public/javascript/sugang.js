@@ -137,8 +137,8 @@ function lookUpList(){
 
 // 조회 버튼 클릭 시
 function handleSearchData(event) {
-  const univ = document.getElementById('univ').value;
-  const major = document.getElementById('department').value;
+  const univ = document.getElementById('univInput').value;
+  const major = document.getElementById('departmentInput').value;
   console.log(`${univ} ${major}`);
   resetTable();
   showClasses(univ, major);
