@@ -64,7 +64,7 @@ html(lang='en')
               option(value='하계계절학기' label='하계계절학기') 하계계절학기
               option(value='동계계절학기' label='동계계절학기') 동계계절학기
             b >대학
-            select#univ
+            select#univInput
               option(value='-전체-') -전체-
               option(value='5') 대학전체
               option(value='인문과학대학') 인문과학대학
@@ -80,10 +80,9 @@ html(lang='en')
               option(value='향설나눔대학') 향설나눔대학
               option(value='인문사회과학대학') 인문사회과학대학
             b >학부(과)
-            select#department
-              option(value='40498') [학과]경영학과(40498)
-              option(value='40499') [학과]국제통상학과(40499)
-              option(value='10753') [학과]데이터통신(10753)
+            select#departmentInput
+              option(value='1') 학과전체
+              
         .resultList
           table
             tbody

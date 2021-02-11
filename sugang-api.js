@@ -36,6 +36,23 @@ api.getClassFromUniv = function(res, univ) {
         }
     });
 }
+// 대학 번호로 학과 조회
+api.getMajorFromUniv = function(res, univ) {
+    const sql = `select * from major where id in (
+        select major from major_relation where univ=${univ}
+    );`;
+    db.query(sql, (err, rows) => {
+        if (err) {
+            return undefined;
+        }
+        else {
+            if (rows)
+                res.json(rows);
+            else
+                res.status(500).send('<h1>Internal server error!</h1>');
+        }
+    });
+}
 
 // 학생이 신청한 과목들 조회
 api.lookup = function(res, user_id) {

@@ -75,6 +75,7 @@ app.post('/login',(req,res)=>{
 app.get('/api/get/class', (req, res) => {
     const major = req.query.major;
     const univ = req.query.univ;
+    const Major = req.query.Major;
     let user = req.query.user;//세션으로 받기 유저아이디
     
     if (major) // localhost:3000/api/get/class?major={학과ID}
@@ -86,7 +87,8 @@ app.get('/api/get/class', (req, res) => {
         user= req.session.Id;   
         return req.session.save(()=>{sugang.lookup(res, user);}) 
     }
-    
+    else if (Major)// localhost:3000/api/get/class?Major={대학ID}
+        sugang.getMajorFromUniv(res,Major);
 });
 
 // 수강 신청

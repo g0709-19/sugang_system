@@ -8,12 +8,42 @@ let userList = document.querySelector(".tbody");
 let cancelBtnArr = document.querySelectorAll(".cancelsubjectBtn");
 //조회버튼
 let searchDataBtn = document.querySelector('#searchData');
+//대학인풋박스
+let univInput = document.querySelector('#univInput');
+//학과인풋박스
+let departmentInput = document.querySelector('#departmentInput');
 
 lookUpList();
+//대학 선택했을때 이벤트
+univInput.addEventListener('input',createDepartmentInput);
+
 
 searchDataBtn.addEventListener('click',()=>{
 
 })
+//대학인풋박스 입력했을때 실행되는 함수
+function createDepartmentInput(event)
+{
+  fetch(`http://localhost:3000/api/get/class?Major=${event.target.value}`)
+  .then((response)=>{
+    return response.json(response);
+  })
+  .then((json)=>{
+    
+    while(departmentInput.hasChildNodes())
+    departmentInput.removeChild(departmentInput.firstChild);
+    
+    let option;
+    for(let i=0;i<json.length;i++)
+    {
+      option=document.createElement('option');
+      option.value=json[i].id;
+      option.innerText=`[학과]${json[i].name}(${json[i].id})`;
+      departmentInput.appendChild(option);
+    }
+  })
+}
+
 
 //취소버튼에 이벤트 생성하기
 function addBtnEvent(event){
@@ -104,3 +134,5 @@ function lookUpList(){
     }
     
   }
+
+
