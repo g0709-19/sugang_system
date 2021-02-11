@@ -17,10 +17,9 @@ lookUpList();
 //대학 선택했을때 이벤트
 univInput.addEventListener('input',createDepartmentInput);
 
+// 조회 버튼 이벤트
+searchDataBtn.addEventListener('click', handleSearchData);
 
-searchDataBtn.addEventListener('click',()=>{
-
-})
 //대학인풋박스 입력했을때 실행되는 함수
 function createDepartmentInput(event)
 {
@@ -136,3 +135,64 @@ function lookUpList(){
   }
 
 
+// 조회 버튼 클릭 시
+function handleSearchData(event) {
+  const univ = document.getElementById('univ').value;
+  const major = document.getElementById('department').value;
+  console.log(`${univ} ${major}`);
+  resetTable();
+  showClasses(univ, major);
+}
+
+// 조회 목록 초기화
+function resetTable() {
+  const tbody = document.getElementById('calendarResult');
+  const tr = document.createElement('tr');
+  const temp = ['개설학년(반)','교과구분','교과목명','수강번호','시간','학점','교수명','시간 및 요일','강의실'];
+  temp.forEach(t => {
+    const td = document.createElement('td');
+    td.innerText = t;
+    tr.appendChild(td);
+  });
+
+  const parent = tbody.parentNode;
+  parent.removeChild(tbody);
+  const newbody = document.createElement('tbody');
+  newbody.id = 'calendarResult';
+  newbody.appendChild(tr);
+  parent.appendChild(newbody);
+}
+
+// 조건에 맞게 목록 보여주기
+function showClasses(univ, major) {
+  // 대학만 왔을 경우(전공이 전체인 경우)
+  // 대학이 전체인 경우
+  // 전공이 있는 경우
+  let url = undefined;
+  if (major) {
+    url = `http://localhost:3000/api/get/class?major=${major}`;
+  } else if (univ) {
+    url = `http://localhost:3000/api/get/class?univ=${univ}`;
+  } else {
+    url = `http://localhost:3000/api/get/class`;
+  }
+
+  const tbody = document.getElementById('calendarResult');
+  fetch(url).then(res => res.json()).then(json => {
+    json.forEach(row => addRow(tbody, row.grade, row.subject, row.name, row.id, row.time, row.credit, row.professor, row.date, row.room));
+  });
+}
+
+// 한 행 생성
+// tbody, 개설학년(반), 교과구분, 교과목명, 수강번호, 시간, 학점, 교수명, 시간 및 요일, 강의실
+function addRow(tbody, grade, subject, name, id, time, credit, professor, date, room) {
+  const tr = document.createElement('tr');
+  tr.classList.add('subjectList');
+  const temp = [grade, subject, name, id, time, credit, professor, date, room];
+  temp.forEach(t => {
+    const td = document.createElement('td');
+    td.innerText = t;
+    tr.appendChild(td);
+  });
+  tbody.appendChild(tr);
+} 

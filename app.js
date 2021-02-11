@@ -89,6 +89,8 @@ app.get('/api/get/class', (req, res) => {
     }
     else if (Major)// localhost:3000/api/get/class?Major={대학ID}
         sugang.getMajorFromUniv(res,Major);
+    else
+        sugang.getAllClass(res);
 });
 
 // 수강 신청

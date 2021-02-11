@@ -65,8 +65,7 @@ html(lang='en')
               option(value='동계계절학기' label='동계계절학기') 동계계절학기
             b >대학
             select#univInput
-              option(value='-전체-') -전체-
-              option(value='5') 대학전체
+              option(value='') -전체-
               option(value='인문과학대학') 인문과학대학
               option(value='사회과학대학') 사회과학대학
               option(value='글로벌경영대학') 글로벌경영대학
@@ -81,11 +80,11 @@ html(lang='en')
               option(value='인문사회과학대학') 인문사회과학대학
             b >학부(과)
             select#departmentInput
-              option(value='1') 학과전체
+              option(value='') 학과전체
               
         .resultList
           table
-            tbody
+            tbody#calendarResult
               tr
                 td 개설학년(반)
                 td 교과구분
