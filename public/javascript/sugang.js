@@ -97,7 +97,7 @@ function lookUpList(){
       {
         td[i]=document.createElement('td');
       }
-      let aTag = document.createElement('a');
+      //let aTag = document.createElement('a');
       td[0].innerText = res[j].grade;
       td[1].innerText = res[j].subject;
       td[2].innerText = res[j].name;
@@ -108,8 +108,8 @@ function lookUpList(){
       td[6].innerText = res[j].professor;
       td[7].innerText = res[j].date;
       td[8].innerText = res[j].room;
-      aTag.innerText = "취소";
-      td[9].append(aTag);
+      //aTag.innerText = "취소";
+      td[9].innerText="취소";
       td[9].classList.add('cancelsubjectBtn');
       
       for(let i=0;i<10;i++)
@@ -130,6 +130,7 @@ function lookUpList(){
     {
       while(subjectList[i].hasChildNodes())
       subjectList[i].removeChild(subjectList[i].firstChild);
+      subjectList[i].parentNode.removeChild(subjectList[i]);
     }
     
   }
@@ -189,10 +190,52 @@ function addRow(tbody, grade, subject, name, id, time, credit, professor, date, 
   const tr = document.createElement('tr');
   tr.classList.add('subjectList');
   const temp = [grade, subject, name, id, time, credit, professor, date, room];
-  temp.forEach(t => {
+  
+  for(let i=0;i<temp.length;i++)
+  {
     const td = document.createElement('td');
-    td.innerText = t;
+    td.innerText = temp[i];
+    if(i===3)
+      td.classList.add('classId');
     tr.appendChild(td);
-  });
+  }
+  
+  // temp.forEach(t => {
+  //   const td = document.createElement('td');
+  //   td.innerText = t;
+  //   tr.appendChild(td);
+    
+  //});
+
+  //신청버튼 추가
+  const td = document.createElement('td');
+  td.innerText = "신청";
+  td.classList.add('enrollBtn');
+  td.addEventListener('click',addCBtnEvent);
   tbody.appendChild(tr);
+  tr.appendChild(td);
 } 
+
+//신청버튼에 이벤트 생성하기
+function addCBtnEvent(event){
+    
+  let class_id= event.target.parentNode.querySelector('.classId').innerText;
+  let url_del =`http://localhost:3000/api/enroll/${class_id}`;
+  
+  fetch(url_del)
+  .then((response)=>{
+      return response.json(response);
+  })
+  .then((json)=>{
+    if(json.enrolled)
+    {
+      lookUpList();
+    }
+    else
+    {
+      alert('신청을 실패하였습니다.');
+    }
+  })
+  .catch((error) => console.log("error:", error));
+  console.log(class_id);
+}
