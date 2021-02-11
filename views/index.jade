@@ -15,7 +15,7 @@ html(lang='en')
       p#user_info
         span#userInfo=userInfo
         | 님 환영합니다.
-      a(href='/') 로그아웃
+      a(href='/logout') 로그아웃
     aside
       p Menu
       div
@@ -26,8 +26,8 @@ html(lang='en')
     .contents
       .sugangList
         p 수강신청목록
-        table
-          tbody
+        table.userList
+          tbody.tbody
             tr
               td 개설학년(반)
               td 교과구분
@@ -38,17 +38,7 @@ html(lang='en')
               td 교수명
               td 시간 및 요일
               td 강의실
-            tr.subjectList
-              td 2학년
-              td 전공
-              td C++프로그래밍
-              td 10746
-              td 3
-              td 3
-              td 김명숙
-              td 목1,2,3
-              td M503
-              td.cancelsubjectBtn 취소
+            
       .listSearch
         .Searchhead
           p 수업시간표 조회
@@ -110,10 +100,12 @@ html(lang='en')
                 td 2학년
                 td 전공
                 td C++프로그래밍
-                td 10746
+                td.class_id 10746
                 td 3
                 td 3
                 td 김명숙
                 td 목1,2,3
                 td M503
-                td.addsubjectBtn 신청
+                td.addsubjectBtn 
+                  a(href=url) 신청
+      script(src='/javascript/sugang.js')

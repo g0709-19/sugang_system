@@ -3,6 +3,15 @@ const { nextTick } = require('process');
 const path = require('path');
 const app = express();
 const PORT = 3000;
+const session = require('express-session');//세션모듈연결
+
+app.use(session({
+    secret :'asdjha!@#@#$dd',
+    resave:false,
+    saveUninitialized:true
+    }))
+    
+    
 
 let bodyParser = require("body-parser");
 let msg = require ('dialog')//경고창 띄워주는 모듈
@@ -20,18 +29,25 @@ app.use(bodyParser.urlencoded({extended:false}));//bodyparser설정
 
 app.get('/', (req, res) => {
     // 로그인 페이지 연결
-    res.sendFile(path.join(__dirname, 'public/html/login.html'), (err) => {
+    res.sendFile(path.join(__dirname, 'public/html/login.html'),{user_Id : req.session.Id}, (err) => {//세션값추가
         if (err) {
             res.status(500).send('Internal server error!');
             console.log(err);
         }
     })
 });
+//로그아웃
+app.get('/logout',(req,res)=>{
+    delete req.session.Id;//세션삭제
+    return req.session.save(()=>{res.redirect('/');})
+})
 
+//로그인
 app.post('/login',(req,res)=>{
     
     db.query('SELECT * FROM user where id=? and password=?',[req.body.Id,req.body.Password],(err,result)=>{
 
+        
         if (err){
             res.status(500).send('Internal server error!');
             console.log(error);
@@ -39,7 +55,10 @@ app.post('/login',(req,res)=>{
         console.log(result);
         if(result.length>0)//로그인완료되면
         {
-            res.render("index",{userInfo:`${result[0].name}(${result[0].id})`});
+            req.session.Id=req.body.Id;//세션값 저장
+            return req.session.save(()=>{res.render("index",{userInfo:`${result[0].name}(${req.session.Id})`});})
+            
+
         }
         else//실패하면 로그인화면으로
         {
@@ -56,13 +75,18 @@ app.post('/login',(req,res)=>{
 app.get('/api/get/class', (req, res) => {
     const major = req.query.major;
     const univ = req.query.univ;
-    const user = req.query.user;
+    let user = req.query.user;//세션으로 받기 유저아이디
+    
     if (major) // localhost:3000/api/get/class?major={학과ID}
         sugang.getClassFromMajor(res, major);
     else if (univ) // localhost:3000/api/get/class?univ={대학ID}
         sugang.getClassFromUniv(res, univ);
     else if (user) // localhost:3000/api/get/class?user={학번}
-        sugang.lookup(res, user);
+    {
+        user= req.session.Id;   
+        return req.session.save(()=>{sugang.lookup(res, user);}) 
+    }
+    
 });
 
 // 수강 신청
